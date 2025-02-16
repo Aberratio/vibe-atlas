@@ -10,6 +10,7 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./Header.module.css";
 // import { SpotifyLoginButton } from "../auth/SpotifyLoginButton";
 import { LanguagePicker } from "../language-picker/LanguagePicker";
+import { SpotifyLoginButton } from "../auth/SpotifyLoginButton";
 
 export const Header = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -38,7 +39,7 @@ export const Header = () => {
 
           <Group visibleFrom="sm">
             <LanguagePicker />
-            {/* <SpotifyLoginButton /> */}
+            <SpotifyLoginButton />
             {/* <Button>Sign up</Button> */}
           </Group>
 
@@ -79,7 +80,7 @@ export const Header = () => {
 
           <Group justify="center" grow pb="xl" px="md">
             <LanguagePicker />
-            {/* <SpotifyLoginButton /> */}
+            <SpotifyLoginButton />
           </Group>
         </ScrollArea>
       </Drawer>

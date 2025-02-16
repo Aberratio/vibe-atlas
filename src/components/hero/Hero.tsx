@@ -20,9 +20,8 @@ export const Hero = () => {
         </h1>
 
         <Text className={classes.description} color="dimmed">
-          Masz ochotę na idealną playlistę dopasowaną do Twojego nastroju i
-          lokalizacji? Nasza aplikacja to Twój osobisty przewodnik po świecie
-          muzyki!
+          Masz ochotę na playlistę dopasowaną do Twojego nastroju i lokalizacji?
+          Nasza aplikacja to Twój osobisty przewodnik po świecie muzyki!
         </Text>
 
         <Flex className={classes.controls} justify="center">

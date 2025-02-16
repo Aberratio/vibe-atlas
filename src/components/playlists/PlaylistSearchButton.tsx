@@ -67,7 +67,7 @@ export const PlaylistSearchButton = () => {
   };
 
   return (
-    <>
+    <Flex gap="md" direction="column">
       <PlaylistDetailsDrawer
         opened={opened}
         onClose={close}
@@ -89,11 +89,13 @@ export const PlaylistSearchButton = () => {
         onClick={() => {
           fetchPlaylistSearch();
         }}
+        w={300}
+        mx="auto"
       >
         Wyszukaj playlisty
       </Button>
-      <div>
-        {isLoading && <Loader />}
+      <Flex direction="column" gap="md">
+        {isLoading && <Loader mx="auto" mt="md" />}
         {playlists.length > 0 && (
           <>
             <h2>Playlisty</h2>
@@ -116,7 +118,7 @@ export const PlaylistSearchButton = () => {
             </Flex>
           </>
         )}
-      </div>
-    </>
+      </Flex>
+    </Flex>
   );
 };
