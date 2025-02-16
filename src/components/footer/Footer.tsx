@@ -1,5 +1,5 @@
 // import { Anchor, Container, Group } from "@mantine/core";
-import { Anchor, Container, Text } from "@mantine/core";
+import { Anchor, Container, Flex, Text } from "@mantine/core";
 import classes from "./Footer.module.css";
 
 // const links = [
@@ -24,7 +24,30 @@ export const Footer = () => {
 
   return (
     <div className={classes.footer}>
-      <Container className={classes.inner}>
+      <Flex
+        hiddenFrom="sm"
+        direction="column"
+        mx="auto"
+        w="100%"
+        ta="center"
+        mt="sm"
+      >
+        <Text>
+          Copyright © 2025
+          <Anchor<"a">
+            href="https://webcodesign.pl"
+            size="sm"
+            variant="filled"
+            target="_blank"
+            mx="xs"
+            c="grape"
+          >
+            webco.design
+          </Anchor>
+        </Text>
+        <Text>☕ All rights reserved.</Text>
+      </Flex>
+      <Container visibleFrom="sm" className={classes.inner}>
         <Text>
           Copyright © 2025
           <Anchor<"a">
