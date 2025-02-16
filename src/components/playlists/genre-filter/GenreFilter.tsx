@@ -1,7 +1,6 @@
 import {
   Autocomplete,
   AutocompleteProps,
-  Box,
   Button,
   Flex,
   Text,
