@@ -17,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <MantineProvider defaultColorScheme="light">
+    <MantineProvider forceColorScheme="dark">
       <Layout>
         {isLoggedIn ? (
           <PlaylistSearchButton />

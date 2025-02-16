@@ -29,7 +29,6 @@ export const Footer = () => {
           Copyright © 2025
           <Anchor<"a">
             href="https://webcodesign.pl"
-            onClick={(event) => event.preventDefault()}
             size="sm"
             variant="filled"
             target="_blank"
