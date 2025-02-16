@@ -2,7 +2,6 @@ import {
   Text,
   Button,
   TextInput,
-  Box,
   Title,
   Flex,
   Tooltip,
@@ -66,7 +65,8 @@ export const LocationFilter = ({ setLocation }: LocationFilterProps) => {
   }, []);
 
   return (
-    <Box
+    <Flex
+      direction="column"
       mx="auto"
       p="md"
       bd="1px solid #ccc"
@@ -74,7 +74,9 @@ export const LocationFilter = ({ setLocation }: LocationFilterProps) => {
       w="100%"
       style={{ borderRadius: "10px" }}
     >
-      <Title order={3}>Lokalizacja</Title>
+      <Title order={3} ta="center">
+        Lokalizacja
+      </Title>
       <Flex direction="column" gap="md" w="100%" mt="md" p="md">
         {currentLocation && (
           <>
@@ -87,12 +89,15 @@ export const LocationFilter = ({ setLocation }: LocationFilterProps) => {
             >
               Użyj mojej lokalizacji: {currentLocation}
             </Button>
-            <Text>LUB</Text>
+            <Text ta="center">LUB</Text>
           </>
         )}
         <Text>
           Wpisz lokalizację ręcznie
-          <Tooltip label="Wpisz miasto i kraj, najlepiej w lokalnym języku">
+          <Tooltip
+            label="Wpisz miasto i kraj, najlepiej w lokalnym języku, np. 'Cabo Verde, República de Cabo Verde'"
+            position="bottom"
+          >
             <ActionIcon size="sm" variant="transparent" aria-label="Info">
               <IconInfoCircle
                 style={{ width: "70%", height: "70%" }}
@@ -122,6 +127,6 @@ export const LocationFilter = ({ setLocation }: LocationFilterProps) => {
           Resetuj
         </Button>
       </Flex>
-    </Box>
+    </Flex>
   );
 };

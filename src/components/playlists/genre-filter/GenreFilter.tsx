@@ -31,7 +31,8 @@ export const GenreFilter = ({ setGenre }: GenreFilterProps) => {
   };
 
   return (
-    <Box
+    <Flex
+      direction="column"
       mx="auto"
       p="md"
       bd="1px solid #ccc"
@@ -39,7 +40,9 @@ export const GenreFilter = ({ setGenre }: GenreFilterProps) => {
       w="100%"
       style={{ borderRadius: "10px" }}
     >
-      <Title order={3}>Gatunek</Title>
+      <Title order={3} ta="center">
+        Gatunek
+      </Title>
       <Flex direction="column" gap="md" w="100%" mt="md" p="md">
         <Text>Wybierz gatunek</Text>
         <Autocomplete
@@ -80,6 +83,6 @@ export const GenreFilter = ({ setGenre }: GenreFilterProps) => {
           Resetuj
         </Button>
       </Flex>
-    </Box>
+    </Flex>
   );
 };

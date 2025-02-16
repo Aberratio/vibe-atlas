@@ -94,7 +94,7 @@ export const PlaylistSearchButton = () => {
       >
         Wyszukaj playlisty
       </Button>
-      <Flex direction="column" gap="md">
+      <Flex direction="column" gap="md" maw={1200} mx="auto">
         {isLoading && <Loader mx="auto" mt="md" />}
         {playlists.length > 0 && (
           <>
