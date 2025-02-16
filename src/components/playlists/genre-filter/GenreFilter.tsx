@@ -49,13 +49,25 @@ export const GenreFilter = ({ setGenre }: GenreFilterProps) => {
           onChange={(value) => {
             if (genresData[value]?.pl) {
               setValue(genresData[value].pl);
-              setGenre({ localName: genresData[value].pl, value });
             } else {
               setValue(value);
-              setGenre({ localName: value, value });
             }
           }}
         />
+        <Button
+          disabled={value.length < 2}
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            if (genresData[value]?.pl) {
+              setGenre({ localName: genresData[value].pl, value });
+            } else {
+              setGenre({ localName: value, value });
+            }
+          }}
+        >
+          Wybierz
+        </Button>
         <Button
           color="red"
           variant="light"
