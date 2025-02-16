@@ -1,25 +1,41 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Flex, Loader, Title } from "@mantine/core";
 import { useState } from "react";
-import { PlaylistItem } from "../../types/PlaylistItem";
-import { PlaylistCard } from "./playlist-card/PlaylistCard";
 import { useDisclosure } from "@mantine/hooks";
-import { PlaylistDetailsItem } from "../../types/PlaylistDetailsItem";
+import { IconSearch } from "@tabler/icons-react";
+import { useAtom } from "jotai";
+
+import { PlaylistCard } from "./playlist-card/PlaylistCard";
 import { PlaylistDetailsDrawer } from "./PlaylistDetailsDrawer";
 import { PlaylistSearchFilters } from "./PlaylistSearchFilters";
-import { IconSearch } from "@tabler/icons-react";
 import { refreshAccessToken } from "../../api/refreshAccessToken";
+import { PlaylistItem } from "../../types/PlaylistItem";
+import { PlaylistDetailsItem } from "../../types/PlaylistDetailsItem";
+import { atomWithStorage } from "jotai/utils";
+
+const playlistsAtom = atomWithStorage<PlaylistItem[]>("playlists", []);
+const genreAtom = atomWithStorage<{ localName: string; value: string }>(
+  "genre",
+  {
+    localName: "",
+    value: "",
+  }
+);
+const locationAtom = atomWithStorage<string>("location", "");
+const playlistDetailsAtom = atomWithStorage<PlaylistDetailsItem | null>(
+  "playlistDetails",
+  null
+);
 
 export const PlaylistSearchButton = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [playlists, setPlaylists] = useState<any[]>([]);
-  const [genre, setGenre] = useState<{ localName: string; value: string }>({
-    localName: "",
-    value: "",
-  });
-  const [location, setLocation] = useState<string>("");
+  const [playlists, setPlaylists] = useAtom<PlaylistItem[]>(playlistsAtom);
+  const [genre, setGenre] = useAtom<{ localName: string; value: string }>(
+    genreAtom
+  );
+  const [location, setLocation] = useAtom<string>(locationAtom);
   const [playlistDetails, setPlaylistDetails] =
-    useState<PlaylistDetailsItem | null>(null);
+    useAtom<PlaylistDetailsItem | null>(playlistDetailsAtom);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchPlaylistSearch = async () => {
