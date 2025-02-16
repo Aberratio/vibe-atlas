@@ -76,10 +76,10 @@ export const Header = () => {
             Utwory
           </a> */}
 
-          <Divider my="sm" />
+          {/* <Divider my="sm" /> */}
 
-          <Group justify="center" grow pb="xl" px="md">
-            <LanguagePicker />
+          <Group justify="center" gap="md" dir="column" grow pb="xl" px="md">
+            {/* <LanguagePicker /> */}
             <SpotifyLoginButton />
           </Group>
         </ScrollArea>
