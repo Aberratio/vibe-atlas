@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Flex, Loader } from "@mantine/core";
+import { Button, Flex, Loader, Title } from "@mantine/core";
 import { useState } from "react";
 import { PlaylistItem } from "../../types/PlaylistItem";
 import { PlaylistCard } from "./playlist-card/PlaylistCard";
@@ -8,6 +8,7 @@ import { PlaylistDetailsItem } from "../../types/PlaylistDetailsItem";
 import { PlaylistDetailsDrawer } from "./PlaylistDetailsDrawer";
 import { PlaylistSearchFilters } from "./PlaylistSearchFilters";
 import { IconSearch } from "@tabler/icons-react";
+import { refreshAccessToken } from "../../api/refreshAccessToken";
 
 export const PlaylistSearchButton = () => {
   const [opened, { open, close }] = useDisclosure(false);
@@ -36,11 +37,25 @@ export const PlaylistSearchButton = () => {
           "Content-Type": "application/json",
         },
       }
-    );
+    ).catch((error) => {
+      console.error("Error fetching playlist details:", error);
+    });
 
-    const data = await response.json();
-    if (data?.playlists?.items) setPlaylists(data.playlists.items);
+    if (!response?.ok) {
+      refreshAccessToken();
+      setTimeout(() => {
+        fetchPlaylistSearch();
+      }, 1000);
+      return null;
+    }
+
+    if (response) {
+      const data = await response.json();
+      if (data?.playlists?.items) setPlaylists(data.playlists.items);
+    }
+
     setIsLoading(false);
+    return null;
   };
 
   const fetchPlaylistDetails = async (playlistId: string) => {
@@ -52,10 +67,23 @@ export const PlaylistSearchButton = () => {
           "Content-Type": "application/json",
         },
       }
-    );
+    ).catch((error) => {
+      console.error("Error fetching playlist details:", error);
+    });
 
-    const data = await response.json();
-    return data;
+    if (!response?.ok) {
+      refreshAccessToken();
+      setTimeout(() => {
+        fetchPlaylistDetails(playlistId);
+      }, 1000);
+      return null;
+    }
+
+    if (response) {
+      const data = await response.json();
+      return data;
+    }
+    return null;
   };
 
   const handlePlaylistClick = async (playlist: PlaylistItem) => {
@@ -94,12 +122,14 @@ export const PlaylistSearchButton = () => {
       >
         Wyszukaj playlisty
       </Button>
-      <Flex direction="column" gap="md" maw={1200} mx="auto">
+      <Flex direction="column" gap="md" maw={1200} mx="auto" justify="center">
         {isLoading && <Loader mx="auto" mt="md" />}
         {playlists.length > 0 && (
           <>
-            <h2>Playlisty</h2>
-            <Flex gap="md" wrap="wrap">
+            <Title order={2} ta="center" my="md">
+              Playlisty dla Ciebie
+            </Title>
+            <Flex gap="md" wrap="wrap" justify="center">
               {playlists?.map((playlist: PlaylistItem) => {
                 if (!playlist || !playlist?.external_urls?.spotify) {
                   return null;
