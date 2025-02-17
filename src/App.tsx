@@ -6,9 +6,13 @@ import { PlaylistSearchButton } from "./components/playlists/PlaylistSearchButto
 import { useEffect, useState } from "react";
 import { Hero } from "./components/hero/Hero";
 import { FeaturesCards } from "./components/features/FeaturesCards";
+import { Favorites } from "./components/favorites/Favorites";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const url = window.location.href;
+  const activeLink = url.split("/").pop();
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -20,7 +24,11 @@ function App() {
     <MantineProvider forceColorScheme="dark">
       <Layout>
         {isLoggedIn ? (
-          <PlaylistSearchButton />
+          activeLink === "playlists" ? (
+            <PlaylistSearchButton />
+          ) : (
+            <Favorites />
+          )
         ) : (
           <>
             <Hero />

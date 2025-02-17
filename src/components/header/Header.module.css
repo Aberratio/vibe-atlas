@@ -6,7 +6,8 @@
     light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
-.link {
+.link,
+.activeLink {
   display: flex;
   align-items: center;
   height: 100%;
@@ -28,6 +29,14 @@
       var(--mantine-color-dark-6)
     );
   }
+}
+
+.activeLink {
+  background-color: light-dark(
+    var(--mantine-color-grape-dark),
+    var(--mantine-color-grape-light)
+  ) !important;
+  color: var(--mantine-color-white) !important;
 }
 
 .subLink {

@@ -16,6 +16,9 @@ export const Header = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
 
+  const url = window.location.href;
+  const activeLink = url.split("/").pop();
+
   return (
     <AppShell.Header>
       <header className={classes.header}>
@@ -25,10 +28,23 @@ export const Header = () => {
           <Group h="100%" gap={0} visibleFrom="sm">
             {/* <a href="/" className={classes.link}>
               Strona Główna
-            </a>
-            <a href="/playlists" className={classes.link}>
+            </a>*/}
+            <a
+              href="/playlists"
+              className={
+                activeLink === "playlists" ? classes.activeLink : classes.link
+              }
+            >
               Playlisty
-            </a> */}
+            </a>
+            <a
+              href="/favorites"
+              className={
+                activeLink === "favorites" ? classes.activeLink : classes.link
+              }
+            >
+              Ulubione
+            </a>
             {/* <a href="/albums" className={classes.link}>
               Albumy
             </a>
@@ -65,10 +81,23 @@ export const Header = () => {
 
           {/* <a href="#" className={classes.link}>
             Strona Główna
-          </a>
-          <a href="/playlists" className={classes.link}>
+          </a>*/}
+          <a
+            href="/playlists"
+            className={
+              activeLink === "playlists" ? classes.activeLink : classes.link
+            }
+          >
             Playlisty
-          </a> */}
+          </a>
+          <a
+            href="/favorites"
+            className={
+              activeLink === "favorites" ? classes.activeLink : classes.link
+            }
+          >
+            Ulubione
+          </a>
           {/* <a href="/albums" className={classes.link}>
             Albumy
           </a>
