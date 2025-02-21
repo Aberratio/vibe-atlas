@@ -22,8 +22,6 @@ export const Favorites = () => {
   const [favorites, setFavorites] = useAtom<FavoriteItem[]>(favoritesAtom);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log(favorites);
-
   const fetchFavoritesSearch = async () => {
     setFavorites([]);
     setIsLoading(true);
@@ -49,15 +47,14 @@ export const Favorites = () => {
 
     if (response) {
       const data = await response.json();
-      console.log(data);
-      if (data?.items) setFavorites(data);
+      if (data?.items) setFavorites(data.items);
     }
 
     setIsLoading(false);
     return null;
   };
 
-  const rows = favorites.map((item: FavoriteItem) => {
+  const rows = favorites?.map((item: FavoriteItem) => {
     if (!item) return null;
 
     return (
